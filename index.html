@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <label for="heightInput">Augums (metros):</label>
+    <input type="number" id="heightInput" step="0.1" required />
+    <br /><br />
+
+    <label for="weightInput">Svars (kilogramos):</label>
+    <input type="number" id="weightInput" step="0.1" required />
+    <br /><br />
+
+    <button id="calculateBtn">Aprēķināt ĶMI</button>
+
+    <p id="result"></p>
+
+    <script>
+      document
+        .getElementById("calculateBtn")
+        .addEventListener("click", function () {
+          var height = parseFloat(document.getElementById("heightInput").value);
+          var weight = parseFloat(document.getElementById("weightInput").value);
+
+          if (isNaN(height), isNaN(weight), height <= 0, weight <= 0) {
+            document.getElementById("result").textContent =
+              "Lūdzu ievadiet derīgas vērtības augumam un svaram.";
+            return;
+          }
+
+          var bmi = weight / (height * height);
+
+          var category = "";
+          if (bmi < 18.5) {
+            category = "Nepietiekams svars";
+          } else if (bmi >= 18.5 && bmi < 25) {
+            category = "Normāls svars";
+          } else if (bmi >= 25 && bmi < 30) {
+            category = "Liekais svars";
+          } else {
+            category = "Aptaukošanās";
+          }
+
+          document.getElementById(
+            "result"
+          ).textContent = `Jūsu ĶMI ir ${bmi.toFixed(
+            2
+          )}, kas atbilst kategorijai: ${category}.`;
+        });
+    </script>
+  </body>
+</html>
